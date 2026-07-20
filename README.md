@@ -54,17 +54,17 @@ Alcanza con abrir `index.html` con doble clic, o con clic derecho → "Abrir con
 
 El repo ya incluye el workflow (`.github/workflows/deploy.yml`) que publica el sitio automáticamente en cada push a `main`. Pasos para dejarlo online:
 
-1. Creá un repositorio vacío en GitHub (sin README, sin .gitignore) — por ejemplo `el-stock`.
+1. Creá un repositorio vacío en GitHub (sin README, sin .gitignore).
 2. En esta carpeta, conectá el repo remoto y subí el código:
    ```bash
-   git remote add origin https://github.com/TU-USUARIO/el-stock.git
+   git remote add origin https://github.com/gabylentino75/elstock.git
    git branch -M main
    git push -u origin main
    ```
 3. En GitHub, andá a **Settings → Pages** y en "Build and deployment" elegí como fuente **GitHub Actions** (si no quedó configurado solo tras el primer push).
 4. Esperá a que termine el workflow (pestaña **Actions** del repo). Cuando termina, el sitio queda publicado en:
    ```
-   https://TU-USUARIO.github.io/el-stock/
+   https://gabylentino75.github.io/elstock/
    ```
 
 Ese link es el que podés compartir con el interesado — cada vez que subas cambios a `main`, se actualiza solo.
