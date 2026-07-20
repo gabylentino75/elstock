@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EL STOCK · Autopartes</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%226%22 fill=%22%233a0ca3%22/><text x=%2212%22 y=%2217%22 font-size=%2214%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22Arial%22>ES</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ===================== HEADER (logueado) ===================== -->
+  <header id="app-header" class="app-header hidden">
+    <div class="app-header__brand">
+      <span class="logo-badge">ES</span>
+      <span class="app-header__title">EL STOCK</span>
+    </div>
+    <div class="app-header__user">
+      <span id="header-username"></span>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== LANDING ===================== -->
+    <section id="screen-landing" class="screen screen--landing">
+      <div class="landing__hero">
+        <div class="landing__logo">
+          <span class="logo-badge logo-badge--lg">ES</span>
+          <h1>EL STOCK</h1>
+        </div>
+        <p class="landing__tagline">
+          Comprá y vendé autopartes en un solo lugar. Encontrá el repuesto que necesitás
+          o convertí tu stock sin uso en una nueva oportunidad de negocio.
+        </p>
+        <div class="landing__actions">
+          <button class="btn btn--primary btn--lg" data-nav="login">Iniciar sesión</button>
+          <button class="btn btn--outline btn--lg" data-nav="register">Registrarse</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LOGIN ===================== -->
+    <section id="screen-login" class="screen hidden">
+      <div class="card auth-card">
+        <button class="back-btn" data-nav="landing" aria-label="Volver">←</button>
+        <h2>Iniciar sesión</h2>
+        <form id="form-login" class="form" novalidate>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" required placeholder="tu@email.com">
+          </label>
+          <label class="field">
+            <span>Contraseña</span>
+            <input type="password" name="password" required placeholder="••••••••">
+          </label>
+          <p class="form-error" id="login-error"></p>
+          <button type="submit" class="btn btn--primary btn--lg btn--block">Ingresar</button>
+        </form>
+        <p class="auth-switch">¿No tenés cuenta? <a href="#" data-nav="register">Registrate</a></p>
+      </div>
+    </section>
+
+    <!-- ===================== REGISTER ===================== -->
+    <section id="screen-register" class="screen hidden">
+      <div class="card auth-card">
+        <button class="back-btn" data-nav="landing" aria-label="Volver">←</button>
+        <h2>Crear cuenta</h2>
+        <form id="form-register" class="form" novalidate>
+          <label class="field">
+            <span>Nombre del taller / tu nombre</span>
+            <input type="text" name="nombre" required placeholder="Ej: Taller Gómez">
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" required placeholder="tu@email.com">
+          </label>
+          <label class="field">
+            <span>WhatsApp / Teléfono de contacto</span>
+            <input type="tel" name="telefono" required placeholder="Ej: 11 2345 6789">
+          </label>
+          <label class="field">
+            <span>Contraseña</span>
+            <input type="password" name="password" required minlength="4" placeholder="Mínimo 4 caracteres">
+          </label>
+          <p class="form-error" id="register-error"></p>
+          <button type="submit" class="btn btn--primary btn--lg btn--block">Crear cuenta</button>
+        </form>
+        <p class="auth-switch">¿Ya tenés cuenta? <a href="#" data-nav="login">Iniciá sesión</a></p>
+      </div>
+    </section>
+
+    <!-- ===================== HOME (post-login) ===================== -->
+    <section id="screen-home" class="screen hidden">
+      <div class="home__greeting">
+        <h2 id="greeting-text">¡Hola!</h2>
+        <p class="home__subtitle">¿Qué querés hacer hoy?</p>
+      </div>
+      <div class="home__choices">
+        <button class="choice-card" data-nav="sell">
+          <span class="choice-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+          <span class="choice-card__title">Vender un repuesto</span>
+          <span class="choice-card__desc">Publicá el stock que tenés sin usar</span>
+        </button>
+        <button class="choice-card" data-nav="catalog">
+          <span class="choice-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </span>
+          <span class="choice-card__title">Comprar repuestos</span>
+          <span class="choice-card__desc">Buscá en el catálogo de la comunidad</span>
+        </button>
+      </div>
+
+      <div class="home__stats">
+        <div class="stat-chip">
+          <strong id="stat-mine">0</strong>
+          <span>Mis publicaciones</span>
+        </div>
+        <div class="stat-chip">
+          <strong id="stat-total">0</strong>
+          <span>Repuestos disponibles</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VENDER (formulario) ===================== -->
+    <section id="screen-sell" class="screen hidden">
+      <div class="section-head">
+        <button class="back-btn" data-nav="home" aria-label="Volver">←</button>
+        <h2>Publicar repuesto</h2>
+      </div>
+
+      <form id="form-sell" class="form card" novalidate>
+
+        <label class="field">
+          <span>Tipo de repuesto</span>
+          <select name="tipo" required>
+            <option value="" disabled selected>Elegí una pieza</option>
+            <option value="Paragolpes">Paragolpes</option>
+            <option value="Capot">Capot</option>
+            <option value="Puerta">Puerta</option>
+            <option value="Guardabarros">Guardabarros</option>
+            <option value="Espejo">Espejo</option>
+            <option value="Óptica delantera">Óptica delantera</option>
+            <option value="Óptica trasera">Óptica trasera</option>
+            <option value="Parabrisas / Vidrio">Parabrisas / Vidrio</option>
+            <option value="Zócalo / Umbral">Zócalo / Umbral</option>
+            <option value="Baúl / Portón trasero">Baúl / Portón trasero</option>
+            <option value="Motor">Motor</option>
+            <option value="Caja de cambios">Caja de cambios</option>
+            <option value="Embrague">Embrague</option>
+            <option value="Alternador">Alternador</option>
+            <option value="Batería">Batería</option>
+            <option value="Amortiguador">Amortiguador</option>
+            <option value="Freno / Pastillas">Freno / Pastillas</option>
+            <option value="Rueda / Llanta">Rueda / Llanta</option>
+            <option value="Tapizado / Interior">Tapizado / Interior</option>
+            <option value="Escape">Escape</option>
+            <option value="Radiador">Radiador</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Marca y modelo compatible</span>
+          <input type="text" name="marcaModelo" required placeholder="Ej: Volkswagen Gol Trend 2015">
+        </label>
+
+        <fieldset class="field field--radio">
+          <legend>Estado</legend>
+          <div class="radio-group">
+            <label class="radio-pill">
+              <input type="radio" name="estado" value="Nuevo" required>
+              <span>Nuevo</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="estado" value="Usado" required>
+              <span>Usado</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span>Precio (ARS)</span>
+          <input type="number" name="precio" required min="0" step="1" placeholder="Ej: 15000">
+        </label>
+
+        <label class="field">
+          <span>Foto del repuesto</span>
+          <input type="file" name="imagen" accept="image/*" required id="input-imagen">
+          <div class="image-preview" id="image-preview">
+            <span class="image-preview__placeholder">Sin imagen seleccionada</span>
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Contacto (WhatsApp / teléfono)</span>
+          <input type="tel" name="contacto" required placeholder="Ej: 11 2345 6789">
+        </label>
+
+        <p class="form-error" id="sell-error"></p>
+        <button type="submit" class="btn btn--primary btn--lg btn--block">Publicar en el catálogo</button>
+      </form>
+    </section>
+
+    <!-- ===================== CATÁLOGO (comprar) ===================== -->
+    <section id="screen-catalog" class="screen hidden">
+      <div class="section-head">
+        <button class="back-btn" data-nav="home" aria-label="Volver">←</button>
+        <h2>Catálogo de repuestos</h2>
+      </div>
+
+      <div class="catalog-filters">
+        <input type="search" id="filter-search" placeholder="Buscar por marca o modelo...">
+        <select id="filter-tipo">
+          <option value="">Todos los tipos</option>
+        </select>
+        <select id="filter-estado">
+          <option value="">Nuevo y usado</option>
+          <option value="Nuevo">Nuevo</option>
+          <option value="Usado">Usado</option>
+        </select>
+      </div>
+
+      <div id="catalog-grid" class="catalog-grid"></div>
+      <p id="catalog-empty" class="empty-state hidden">
+        Todavía no hay repuestos publicados que coincidan con tu búsqueda.
+      </p>
+    </section>
+
+    <!-- ===================== MIS PUBLICACIONES ===================== -->
+    <section id="screen-mine" class="screen hidden">
+      <div class="section-head">
+        <button class="back-btn" data-nav="home" aria-label="Volver">←</button>
+        <h2>Mis publicaciones</h2>
+      </div>
+      <div id="mine-grid" class="catalog-grid"></div>
+      <p id="mine-empty" class="empty-state hidden">
+        Todavía no publicaste ningún repuesto. ¡Convertí tu stock en ventas!
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ===================== BOTTOM NAV (logueado) ===================== -->
+  <nav id="bottom-nav" class="bottom-nav hidden">
+    <button class="nav-btn" data-nav="home" data-navkey="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Inicio</span>
+    </button>
+    <button class="nav-btn" data-nav="catalog" data-navkey="catalog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span>Comprar</span>
+    </button>
+    <button class="nav-btn nav-btn--fab" data-nav="sell" data-navkey="sell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <span>Vender</span>
+    </button>
+    <button class="nav-btn" data-nav="mine" data-navkey="mine">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3zM3 10h18v11H3z"/><line x1="8" y1="14" x2="16" y2="14"/></svg>
+      <span>Mis autopartes</span>
+    </button>
+    <button class="nav-btn" id="btn-logout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      <span>Salir</span>
+    </button>
+  </nav>
+
+</div>
+
+<!-- ===================== MODAL DETALLE ARTICULO ===================== -->
+<div id="detail-modal" class="modal hidden">
+  <div class="modal__backdrop" data-close-modal></div>
+  <div class="modal__content card">
+    <button class="modal__close" data-close-modal aria-label="Cerrar">✕</button>
+    <div id="detail-body"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
