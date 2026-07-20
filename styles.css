@@ -181,23 +181,27 @@ a{color:var(--secondary);}
 .form{display:flex;flex-direction:column;gap:16px;margin-top:14px;}
 .field{display:flex;flex-direction:column;gap:6px;}
 .field > span, .field legend{font-size:0.85rem;font-weight:700;color:var(--text);}
+.field__optional{font-style:normal;font-weight:400;color:var(--text-muted);}
 .field input[type="text"],
 .field input[type="email"],
 .field input[type="password"],
 .field input[type="tel"],
 .field input[type="number"],
 .field input[type="search"],
-.field select{
+.field select,
+.field textarea{
   border:1.5px solid var(--border);
   border-radius:var(--radius-sm);
   padding:13px 14px;
   font-size:1rem;
+  font-family:inherit;
   background:var(--surface);
   color:var(--text);
   outline:none;
   transition:border-color 0.15s ease;
+  resize:vertical;
 }
-.field input:focus, .field select:focus{border-color:var(--secondary);}
+.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--secondary);}
 .field input[type="file"]{
   border:1.5px dashed var(--border);
   border-radius:var(--radius-sm);
@@ -473,6 +477,14 @@ a{color:var(--secondary);}
 .detail-row span:first-child{color:var(--text-muted);}
 .detail-row span:last-child{font-weight:700;text-align:right;}
 .detail-price{font-size:1.6rem;font-weight:800;color:var(--primary);margin-bottom:10px;}
+.detail-extra{
+  margin-top:12px;
+  padding:12px 14px;
+  background:var(--surface);
+  border-radius:var(--radius-sm);
+}
+.detail-extra__label{display:block;font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px;}
+.detail-extra p{font-size:0.9rem;line-height:1.5;white-space:pre-wrap;}
 .detail-contact-btn{margin-top:16px;}
 
 /* ---------- Toast ---------- */

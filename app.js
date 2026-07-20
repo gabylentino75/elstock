@@ -218,6 +218,7 @@
       estado,
       precio: Number(fd.get('precio')),
       imagen: pendingImageDataUrl,
+      detalles: fd.get('detalles').trim(),
       contacto: fd.get('contacto').trim(),
       vendedorId: currentUser.id,
       vendedorNombre: currentUser.nombre,
@@ -261,14 +262,20 @@
     return '$' + Number(n).toLocaleString('es-AR');
   }
 
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
   function buildPartCard(art, { owner = false } = {}) {
     const card = document.createElement('div');
     card.className = 'part-card';
     card.innerHTML = `
-      <img class="part-card__img" src="${art.imagen}" alt="${art.tipo}">
+      <img class="part-card__img" src="${art.imagen}" alt="${escapeHtml(art.tipo)}">
       <div class="part-card__body">
-        <span class="part-card__tipo">${art.tipo}</span>
-        <span class="part-card__modelo">${art.marcaModelo}</span>
+        <span class="part-card__tipo">${escapeHtml(art.tipo)}</span>
+        <span class="part-card__modelo">${escapeHtml(art.marcaModelo)}</span>
         <div class="part-card__bottom">
           <span class="part-card__precio">${formatPrecio(art.precio)}</span>
           <span class="badge ${art.estado === 'Nuevo' ? 'badge--nuevo' : 'badge--usado'}">${art.estado}</span>
@@ -339,14 +346,21 @@
   const detailBody = document.getElementById('detail-body');
 
   function openDetail(art) {
+    const detallesHtml = art.detalles
+      ? `<div class="detail-extra">
+           <span class="detail-extra__label">Información adicional del vendedor</span>
+           <p>${escapeHtml(art.detalles)}</p>
+         </div>`
+      : '';
     detailBody.innerHTML = `
-      <img class="detail-img" src="${art.imagen}" alt="${art.tipo}">
+      <img class="detail-img" src="${art.imagen}" alt="${escapeHtml(art.tipo)}">
       <span class="badge ${art.estado === 'Nuevo' ? 'badge--nuevo' : 'badge--usado'}">${art.estado}</span>
-      <h2 style="margin-top:10px;">${art.tipo}</h2>
+      <h2 style="margin-top:10px;">${escapeHtml(art.tipo)}</h2>
       <div class="detail-price">${formatPrecio(art.precio)}</div>
-      <div class="detail-row"><span>Compatible con</span><span>${art.marcaModelo}</span></div>
-      <div class="detail-row"><span>Vendedor</span><span>${art.vendedorNombre}</span></div>
-      <div class="detail-row"><span>Contacto</span><span>${art.contacto}</span></div>
+      <div class="detail-row"><span>Compatible con</span><span>${escapeHtml(art.marcaModelo)}</span></div>
+      <div class="detail-row"><span>Vendedor</span><span>${escapeHtml(art.vendedorNombre)}</span></div>
+      <div class="detail-row"><span>Contacto</span><span>${escapeHtml(art.contacto)}</span></div>
+      ${detallesHtml}
       <a class="btn btn--primary btn--lg btn--block detail-contact-btn" target="_blank" rel="noopener"
          href="https://wa.me/${art.contacto.replace(/\D/g, '')}">Contactar por WhatsApp</a>
     `;
